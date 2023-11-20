@@ -8,5 +8,20 @@ namespace SGLicitacoes.Controllers
         {
             return View();
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        public IActionResult EditBid()
+        {
+            return View();
+        }
+
+        public IActionResult DeleteBid()
+        {
+            return View();
+        }
     }
 }
