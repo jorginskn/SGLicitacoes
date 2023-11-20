@@ -1,5 +1,59 @@
 ﻿@{
     ViewData["Title"] = "Listagem de Licitações";
 }
+<div class="text-center">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-controller="Bidding" asp-action="Create"> Adicionar nova Licitação </a>
+    </div>
+    <br />
+    <h1 class="display-4">Listagem de Licitações</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Número da licitação</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Data de abertura</th>
+                <th scope="col">Status </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Novas peças</td>
+                <td>07/06/2023</td>
+                <td>Aberta</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a role="button" class="btn btn-primary">Editar</a>
+                        <a role="button" class="btn btn-danger">Apagar</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Devolução de peça</td>
+                <td>02/02/2023</td>
+                <td>Em andamento</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a role="button" class="btn btn-primary">Editar</a>
+                        <a role="button" class="btn btn-danger">Apagar</a>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>Devolução de peça</td>
+                <td>20/01/2023</td>
+                <td>Fechada</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <a role="button" class="btn btn-primary">Editar</a>
+                        <a role="button" class="btn btn-danger">Apagar</a>
+                    </div>
+                </td>
+            </tr>
+            </    tbody>
+            </  table>
+</div>
 
-<h1>Listagem de Licitações</h1>
