@@ -1,7 +1,22 @@
-﻿@{
+﻿@model BiddingInfo
+@{
     ViewData["Title"] = "Listagem de Licitações";
 }
 <div class="text-center">
     <h1 class="display-4">Cadastrar Licitações</h1>
 </div>
-
+<form asp-controller="Bidding" asp-action="CreateBidding" method="post">
+    <div class="form-group">
+        <label for="description">Descrição</label>
+        <input type="text" asp-for="Description" class="form-control" placeholder="Digite a descrição da sua licitação">
+    </div>
+    <select class="form-select btn-block padding: p-2" asp-for="Status">
+        <option selected >Seleciona o Status da licitação</option>
+        <option value="Aberta">Aberta</option>
+        <option value="Em Andamento">Em Andamento</option>
+        <option value="Fechada">Fechada</option>
+    </select>
+    <br />
+    <button type="submit" class="btn btn-primary btn-block">Adicionar Licitação</button>
+    <a class="btn btn-secondary btn-block" asp-asp-controller="Bidding" asp-action="Index" role="button">Voltar</a>
+</form>
