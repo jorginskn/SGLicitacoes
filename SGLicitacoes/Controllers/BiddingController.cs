@@ -16,7 +16,7 @@ namespace SGLicitacoes.Controllers
 
         public IActionResult Index()
         {
-          var licitacoes = _biddingRepositorio.SearchBidding();
+            var licitacoes = _biddingRepositorio.SearchBidding();
             return View(licitacoes);
         }
 
@@ -25,14 +25,22 @@ namespace SGLicitacoes.Controllers
             return View();
         }
 
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            return View();
+            BiddingInfo bidding = _biddingRepositorio.GetBiddingById(id);
+            return View(bidding);
         }
 
-        public IActionResult DeleteModal()
+        public IActionResult DeleteModal(int id)
         {
-            return View();
+            BiddingInfo bidding = _biddingRepositorio.GetBiddingById(id);
+            return View(bidding);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            _biddingRepositorio.Delete(id);
+             return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -42,5 +50,16 @@ namespace SGLicitacoes.Controllers
             _biddingRepositorio.AddBidding(licitacao);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public IActionResult Edit(BiddingInfo licitacao)
+        {
+            _biddingRepositorio.UpdateBiddingById(licitacao);
+            return RedirectToAction("Index");
+        }
+
+        
+
+
     }
 }
