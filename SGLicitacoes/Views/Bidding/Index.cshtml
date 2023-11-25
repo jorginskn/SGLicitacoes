@@ -5,19 +5,43 @@
 }
 
 <div class="text-center">
-    <div class="d-grid gap-2 d-md-flex justify-content-md-start  ">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
         <a class="btn btn-primary mt-4" role="button" asp-controller="Bidding" asp-action="Create"> Adicionar nova Licitação </a>
     </div>
     <br />
-    <h1 class="display-4">Listagem de Licitações</h1>
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
 
-    <table class="table">
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+    <h1 class="display-4">Listagem de Licitações</h1>
+    <label for="statusFilter">Filtrar por Status:</label>
+    <select id="statusFilter" class="form-select" onchange="filterTable()">
+        <option value="">Todos</option>
+        <option value="Aberta">Aberta</option>
+        <option value="Em Andamento">Em Andamento</option>
+        <option value="Fechada">Fechada</option>
+        <!-- Adicione mais opções conforme necessário -->
+    </select>
+    <table class="table" id="table">
+
         <thead>
             <tr>
                 <th scope="col">Número da licitação</th>
                 <th scope="col">Descrição</th>
                 <th scope="col">Data de abertura</th>
-                <th scope="col">Status </th>
+                <th scope="col">Status</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +49,7 @@
             {
                 foreach (BiddingInfo licitacao in Model)
                 {
-                    <tr>
+                    <tr data-status="@licitacao.Status">
                         <th scope="row">@licitacao.Id</th>
                         <td>@licitacao.Description</td>
                         <td>@licitacao.OpeningData</td>
@@ -43,3 +67,19 @@
     </table>
 </div>
 
+<script>
+    function filterTable() {
+        var statusFilter = document.getElementById("statusFilter").value;
+        var tableRows = document.querySelectorAll("#table tbody tr");
+
+        tableRows.forEach(function (row) {
+            var rowStatus = row.getAttribute("data-status");
+
+            if (statusFilter === "" || statusFilter === rowStatus) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    }
+</script>

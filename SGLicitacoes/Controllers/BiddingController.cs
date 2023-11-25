@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SGLicitacoes.Models;
 using SGLicitacoes.Repositorio;
 using System;
+using System.Linq;
 
 namespace SGLicitacoes.Controllers
 {
@@ -17,6 +18,7 @@ namespace SGLicitacoes.Controllers
         public IActionResult Index()
         {
             var licitacoes = _biddingRepositorio.SearchBidding();
+            
             return View(licitacoes);
         }
 
@@ -40,25 +42,48 @@ namespace SGLicitacoes.Controllers
         public IActionResult Delete(int id)
         {
             _biddingRepositorio.Delete(id);
-             return RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public IActionResult CreateBidding(BiddingInfo licitacao)
+        public IActionResult Create(BiddingInfo licitacao)
         {
-            licitacao.OpeningData = DateTime.Now;
-            _biddingRepositorio.AddBidding(licitacao);
-            return RedirectToAction("Index");
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    licitacao.OpeningData = DateTime.Now;
+                    _biddingRepositorio.AddBidding(licitacao);
+                    TempData["MensagemSucesso"] = "Licitação cadastrada com sucesso";
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (System.Exception erro)
+            {
+                TempData["MensagemErro"] = $"Ops, não conseguimos cadastrar sua licitação , tente novamente , detalhe do erro: {erro}";
+
+                throw;
+            }
+
+
+            return View(licitacao);
+
         }
 
         [HttpPost]
         public IActionResult Edit(BiddingInfo licitacao)
         {
-            _biddingRepositorio.UpdateBiddingById(licitacao);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _biddingRepositorio.UpdateBiddingById(licitacao);
+                return RedirectToAction("Index");
+
+            }
+            return View(licitacao);
         }
 
-        
+
 
 
     }

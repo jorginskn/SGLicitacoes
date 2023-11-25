@@ -9,13 +9,17 @@
     <div class="form-group">
         <label for="description">Descrição</label>
         <input asp-for="Description" type="text" class="form-control" placeholder="Digite a descrição da sua licitação">
+        @Html.ValidationMessageFor(x => x.Description)
     </div>
-    <select  class="form-select btn-block padding: p-2" asp-for="Status">
-        <option selected>Seleciona o Status da licitação</option>
-        <option value="Aberta">Aberta</option>
-        <option value="Em Andamento">Em Andamento</option>
-        <option value="Fechada">Fechada</option>
-    </select>
+    <div>
+        <select class="form-select btn-block padding: p-2" asp-for="Status">
+            <option selected>Seleciona o Status da licitação</option>
+            <option value="Aberta">Aberta</option>
+            <option value="Em Andamento">Em Andamento</option>
+            <option value="Fechada">Fechada</option>
+            @Html.ValidationMessageFor(x => x.Status)
+        </select>
+    </div>
     <br />
     <button type="submit" class="btn btn-primary btn-block">Alterar licitação</button>
     <a class="btn btn-secondary btn-block" asp-asp-controller="Bidding" asp-action="Index" role="button">Voltar</a>
