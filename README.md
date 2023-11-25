@@ -2,14 +2,10 @@
 
 ## Descrição do Projeto
 Este é um projeto de sistema de gerenciamento de licitações desenvolvido utilizando ASP.NET MVC e Entity Framework. O sistema oferece operações básicas de CRUD (Create, Read, Update, Delete) para lidar com informações sobre licitações. Além disso, foram implementados filtros para facilitar a busca por descrição e status das licitações.
+![image](https://github.com/jorginskn/SGLicitacoes/assets/77112497/07c5e432-0e21-4f4b-8d6b-2621314dd87b)
 
-## Requisitos do Sistema
-- [ ] Adicionar nova licitação
-- [ ] Listar licitações existentes
-- [ ] Editar informações de licitações
-- [ ] Excluir licitações
-- [ ] Filtrar licitações por descrição
-- [ ] Filtrar licitações por status
+![image](https://github.com/jorginskn/SGLicitacoes/assets/77112497/62fcd2ee-5e27-4174-a5f5-24b808367601)
+
 
 ## Instruções de Uso
 
